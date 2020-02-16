@@ -1,39 +1,40 @@
 
+
 # MorePower
 
-Hi! 这是一款开源android应用，我想通过它来实现移动端的分布式任务处理，因为目前所有的分布式框架都是基于pc的，对服务器的环境有一定的要求。虽然android也是基于Linux的系统，但封印了好多功能，尤其是root权限的限制，导致普通android手机不能直接部署现有分布式框架。
+Hi! 这是一款开源android应用，我想通过它来实现移动端的分布式任务处理，且具有去中心化、免配置、易使用的特点。因为目前所有的分布式框架都是基于pc的，配置复杂，且对服务器的环境有一定的要求。虽然android也是基于Linux的系统，但封印了好多功能，尤其是root权限的限制，导致普通android手机不能直接部署现有分布式框架。
 
 # 使用说明
 
 目前此app的功能非常简单，只是一原型，实现了简单的任务下发和任务提交功能，使用时一定要在**同一局域网下！！！**。下面是使用步骤：
 
-- Step1: master端输入master启动端口<br/>
+- Step1: master端输入master启动端口
 
-<img src="doc/pic/_1_1.jpg" alt="输入master端口号" title="ner" style="max-height:500px">
+<img src="doc/pic/_1_1.jpg" alt="输入master端口号" title="输入master端口号" style="max-height:500px">
 
 >master的IP固定为127.0.0.1，修改无效；端口任意，只要是未被占用就行。
 
 - Step2: 点击MASTER按钮以启动“工头”
 
-<img src="doc/pic/_2_1.jpg" alt="启动master" style="max-height:500px">
+<img src="doc/pic/_2_1.jpg" alt="启动master" title="启动master" style="max-height:500px">
 
 >点击一次master之后会生成十个任务，等待Worker的任务请求。
 
 - Step3: worker端输入master的IP和端口
 
-<img src="doc/pic/_2_3.jpg" alt="在worker端填写master的IP" style="max-height:500px">
+<img src="doc/pic/_2_3.jpg" alt="在worker端填写master的IP" title="在worker端填写master的IP" style="max-height:500px">
 
 >再次申明，IP必须填局域网IP，因为手机运营商不允许我们直接p2p。
 
 - Step4: 点击WORKER按钮以启动一个“工人”
 
-<img src="doc/pic/_2_4.jpg" alt="启动worker后worker端的输出" style="max-height:500px"> <img src="doc/pic/_2_5.jpg" alt="启动worker后master端的输出" style="max-height:500px">
+<img src="doc/pic/_2_4.jpg" alt="启动worker后worker端的输出" title="启动worker后worker端的输出" style="max-height:500px"> <img src="doc/pic/_2_5.jpg" alt="启动worker后master端的输出" title="启动worker后master端的输出" style="max-height:500px">
 
 >每点击一下WORKER就会生成一个worker，worker的端口是自动分配的。master端当然也可以启动自己的worker，这时IP可以填127.0.0.1，也可以填局域网下的IP。
 
 - Step5: 点击STOP&CLEAN以关闭本地所有master和worker并清理控制台
 
-<img src="doc/pic/_2_6.jpg" alt="worker端点击STOP后的效果" style="max-height:500px"> <img src="doc/pic/_2_7.jpg" alt="worker端点击STOP后，master端的输出" style="max-height:500px">
+<img src="doc/pic/_2_6.jpg" alt="worker端点击STOP后的效果" title="worker端点击STOP后的效果" style="max-height:500px"> <img src="doc/pic/_2_7.jpg" alt="worker端点击STOP后，master端的输出" title="worker端点击STOP后，master端的输出" style="max-height:500px">
 
 # 运行流程
 
@@ -74,7 +75,8 @@ worker-->>master: heart beat
 ### 任务拆分和执行模式
 - 任务拆分虽然是重中之重，但是还没做。。。现在是点击MASTER一下就生成十个任务。
 - 执行模式方面，我比较了解的是storm(其实都不咋了解:))，他使用计算图的形式，制作一个流水线，这样效率会非常高，适合实时任务的处理。可惜我目前的能力还不能复刻出一套这种模式，现在是直接执行master下发的代码，毫无效率可言。。。以后再说吧，先弄个原型出来。
->由于本人技术较渣，就不说太多了😂
+
+>由于本人技术较渣，就不说太多了
 
 # 目标
 - 情境一：有天你想玩个配置要求超高的游戏，但硬件不允许，这时，你打开一个服务，向附近的哥们发起援助请求，说我想借一下你们的手机cpu，只需有数个同意的，就可以将游戏运行时产生的计算任务分配给“租借”到的cpu，达到提高计算性能的目的。
