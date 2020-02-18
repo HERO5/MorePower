@@ -1,4 +1,4 @@
-
+> 此项目已转移到[https://github.com/HERO5/SparkDroid](https://github.com/HERO5/SparkDroid)
 
 # MorePower
 
